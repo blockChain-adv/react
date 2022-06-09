@@ -1,6 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import styled from "styled-components";
+// import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import AdvertiserPage from "./pages/AdvertiserPage";
