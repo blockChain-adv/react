@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import Header from '../components/headers/Header'
-import Plus from '../components/headers/images/plusbutton.png'
-import { GiRibbonMedal } from 'react-icons/gi'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Header from "../components/headers/Header";
+import Plus from "../components/headers/images/plusbutton.png";
+import { GiRibbonMedal } from "react-icons/gi";
 //로고 이미지 나중에 삭제
-import samplelogo from './images/samplelogo.jpg'
-import Modal from 'react-modal'
-import Web3 from 'web3'
+import samplelogo from "./images/samplelogo.jpg";
+import Modal from "react-modal";
+import Web3 from "web3";
 
 const Re = styled.div`
   /* Rectangle 1 */
@@ -17,7 +17,7 @@ const Re = styled.div`
 
   background: #f9dff4;
   border-radius: 50px 50px;
-`
+`;
 
 const Line = styled.div`
   margin: 10px;
@@ -26,7 +26,7 @@ const Line = styled.div`
   padding: 20px;
   font-size: 40px;
   line-height: 47px;
-`
+`;
 
 const Adblock = styled.div`
   .container {
@@ -61,14 +61,14 @@ const Adblock = styled.div`
     margin: 10px;
     font-size: medium;
   }
-`
+`;
 
 const Logo = styled.img`
   width: 200px;
   height: 200px;
   margin: 0px auto;
   border-radius: 50px;
-`
+`;
 
 const RewardButton = styled.button`
   padding: 10px;
@@ -79,11 +79,11 @@ const RewardButton = styled.button`
   height: 30px;
   border-radius: 50px;
   border: 0px;
-`
+`;
 
 const MainPage = () => {
-  const [modalNum, setModalNum] = useState(1)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalNum, setModalNum] = useState(1);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div>
@@ -99,8 +99,8 @@ const MainPage = () => {
                 <Logo src={samplelogo} alt="로고샘플"></Logo>
                 <RewardButton
                   onClick={() => {
-                    setModalIsOpen(true)
-                    setModalNum(1)
+                    setModalIsOpen(true);
+                    setModalNum(1);
                   }}
                 >
                   <GiRibbonMedal />
@@ -110,11 +110,18 @@ const MainPage = () => {
                   <Modal
                     style={{
                       content: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItem: 'center',
-                        textAlign: 'center',
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItem: "center",
+                        textAlign: "center",
+                        // 화면 중앙 위치시키기
+                        width: "500px",
+                        height: "500px",
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
                       },
                     }}
                     isOpen={modalIsOpen}
@@ -131,11 +138,18 @@ const MainPage = () => {
                   <Modal
                     style={{
                       content: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItem: 'center',
-                        textAlign: 'center',
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItem: "center",
+                        textAlign: "center",
+                        // 화면 중앙 위치시키기
+                        width: "500px",
+                        height: "500px",
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
                       },
                     }}
                     isOpen={modalIsOpen}
@@ -177,8 +191,8 @@ const MainPage = () => {
                   src={Plus}
                   alt="광고 등록"
                   onClick={() => {
-                    setModalIsOpen(true)
-                    setModalNum(2)
+                    setModalIsOpen(true);
+                    setModalNum(2);
                   }}
                 />
 
@@ -189,7 +203,7 @@ const MainPage = () => {
         </Adblock>
       </Re>
     </div>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

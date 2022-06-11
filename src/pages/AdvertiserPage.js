@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/headers/Header";
 import Plus from "../components/headers/images/plusbutton.png";
+import Modal from "react-modal";
+import Web3 from "web3";
 
 const Re = styled.div`
   /* Rectangle 1 */
@@ -58,7 +60,23 @@ const Adblock = styled.div`
   }
 `;
 
+/* web3 연결
+const WEB3 = () => {
+  const providerUrl = process.env.PROVIDER_URL || "http://localhost:8545";
+
+  useEffect(() => {
+    const web3 = new Web3(providerUrl);
+  }, []);
+  return (
+    <>
+      <div>연습중</div>
+    </>
+  );
+};
+*/
+
 const AdvertiserPage = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div>
       <Header />
@@ -76,7 +94,53 @@ const AdvertiserPage = () => {
                   border-radius={50}
                   src={Plus}
                   alt="광고 등록"
+                  onClick={() => {
+                    setModalIsOpen(true);
+                  }}
                 />
+                <Modal
+                  style={{
+                    content: {
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItem: "center",
+                      textAlign: "center",
+                      // 화면 중앙 위치시키기
+                      width: "500px",
+                      height: "500px",
+                      position: "fixed",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                    },
+                  }}
+                  isOpen={modalIsOpen}
+                  onRequestClose={() => setModalIsOpen(false)}
+                >
+                  <form>
+                    <p>
+                      광고 제목: <input name="title" />
+                    </p>
+
+                    <p>
+                      광고자: <input name="advertiser" />
+                    </p>
+
+                    <p>
+                      클릭 수: <input name="click_count" />
+                    </p>
+                    <p>
+                      광고비: <input name="advcost" />
+                    </p>
+                    <p>
+                      광고내용: <input name="content" />
+                    </p>
+                  </form>
+                  <button onClick={() => setModalIsOpen(false)}>
+                    광고등록
+                  </button>
+                </Modal>
                 <div className="adplus">광고 등록</div>
               </div>
             </div>
