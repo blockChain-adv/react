@@ -159,7 +159,7 @@ const MainPage = () => {
                       <p>
                         광고 제목: <input name="title" />
                       </p>
-
+                      {/* 광고자 계좌 (로그인한 계좌 받아오기)*/}
                       <p>
                         광고자: <input name="advertiser" />
                       </p>

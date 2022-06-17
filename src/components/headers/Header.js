@@ -79,7 +79,7 @@ const Header = () => {
               <li>
                 <Link to="/MyPage">마이페이지</Link>
               </li>
-              {/* 로그인시 로그아웃으로 변경해야함 */}
+              {/* 일단 keep */}
               <li>
                 로그아웃
                 {/*
