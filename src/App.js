@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 // import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import AdvertiserPage from "./pages/AdvertiserPage";
 import MyPage from "./pages/MyPage";
+import Web3 from "web3";
 
 const GlobalStyle = createGlobalStyle`
   body {

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../components/headers/Header";
 import Plus from "../components/headers/images/plusbutton.png";
 import Modal from "react-modal";
+import Web3 from "web3";
 // import axios from "axios";
 
 const Re = styled.div`
@@ -58,6 +59,22 @@ const Adblock = styled.div`
     margin: 10px;
     font-size: medium;
   }
+  .content {
+    margin: 30px;
+    padding: 10px;
+  }
+`;
+
+const Ybox = styled.div`
+  padding: 10px;
+  margin: 10px;
+  font-weight: 900;
+  background-color: #eef691;
+  width: 135px;
+  height: 30px;
+  border-radius: 50px;
+  border: 0px;
+  text-align: center;
 `;
 
 /* web3 연결
@@ -66,7 +83,24 @@ const WEB3 = () => {
 
   useEffect(() => {
     const web3 = new Web3(providerUrl);
+
+    let provider = window.ethereum; // metamask가 실제로 설치되어 있는지 확인
+
+    if (typeof provider !== "undefined") {
+      // 1. metamask is installed
+
+      // 2. 사용자 지갑 연결 요청
+      provider
+        .reqest({ method: "eth_requestAccounts" })
+        .then((accounts) => {
+          console.log(accounts);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
+
   return (
     <>
       <div>연습중</div>
@@ -74,7 +108,6 @@ const WEB3 = () => {
   );
 };
 */
-
 /* form data post */
 const Post = () => {
   const [title, setTitle] = useState("");
@@ -155,6 +188,34 @@ const Post = () => {
 
 const AdvertiserPage = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const providerUrl = process.env.PROVIDER_URL || "http://localhost:8545";
+
+  useEffect(() => {
+    let provider = window.ethereum; // metamask가 실제로 설치되어 있는지 확인
+
+    if (typeof provider !== "undefined") {
+      // 1. metamask is installed
+
+      // 2. 사용자 지갑 연결 요청
+      provider
+        .request({ method: "eth_requestAccounts" })
+        .then((accounts) => {
+          console.log(accounts);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // 메타마스크 계정 변경 사항을 수신
+      window.ethereum.on("accountsChanged", function (accounts) {
+        console.log(accounts);
+      });
+    }
+
+    // web3 인스턴스를 사용해 통화 트랜잭션 수행
+    const web3 = new Web3(providerUrl);
+  }, []);
+
   return (
     <div>
       <Header />
@@ -203,14 +264,17 @@ const AdvertiserPage = () => {
                 <div className="adplus">광고 등록</div>
               </div>
             </div>
-            <div className="item">HEllo2</div>
-            <div className="item">HEllo3</div>
-            <div className="item">HEllo4</div>
-            <div className="item">HEllo5</div>
-            <div className="item">HEllo6</div>
-            <div className="item">HEllo7</div>
-            <div className="item">HEllo8</div>
-            <div className="item">HEllo39</div>
+            <div className="item">
+              <Ybox>CocaCola</Ybox>
+              <div className="content">
+                <div>거래내역: </div>
+                <div>광고내용: </div>
+                <div>클릭 수: 100</div>
+              </div>
+              <Ybox>
+                <div className="small">광고중</div>
+              </Ybox>
+            </div>
           </div>
         </Adblock>
       </Re>
